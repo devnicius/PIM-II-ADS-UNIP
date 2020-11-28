@@ -11,30 +11,29 @@ typedef struct data{
   char data_atual[30];
 }Data;
 
-
+//Estrutura para o login do adm
 typedef struct adm{
 unsigned long int codigo;
 unsigned long int senha;
 unsigned long int cargo;
 }ADM;
 
+//Estrutura para alocar a agenda do paciente
 typedef struct agenda {
-
   int mes[5], dia[5], hora[5];
   int contador;
-
 }Agenda;
 
+//Estrutura para alocar a ficha m√©dica do paciente
 typedef struct ficha {
-
 char receituario[500];
 char obs[500];
 char atestado[500];
-
 }Ficha;
 
+//Lista encadeada para os dados dos pacientes e funcion√°rios
 typedef struct lista{
-/*--------funcion·rios--------*/
+/*--------funcion√°rios--------*/
   char f_nome[100];
   char f_endereco[100];
   char f_sexo[11];
@@ -65,7 +64,7 @@ typedef struct lista{
   Lista paciente;
   Lista funcionario;
 
-//Zerando o cÛdigo e o contador somente quando o programa È iniciado
+//Zerando o c√≥digo e o contador somente quando o programa √© iniciado
   codigo = 0;
   contador = 0;
 
@@ -73,7 +72,7 @@ typedef struct lista{
   Lista *primeiro = NULL;
 
 
-//DeclaraÁ„o de funÁıes (protÛtipos).
+//Declara√ß√£o de fun√ß√µes (prot√≥tipos).
   Lista *inserir_adm();
   void inicio();
   void valida_Login(Lista *primeiro);
@@ -95,14 +94,14 @@ typedef struct lista{
   void data();//519
 
   void agendar () {
-  //ponteiro para apontar o atual ao primeiro elemento da lista (como o i = 0 para vetores, aponta para o primeiro campo para apontar aos prÛximos, possÌvelmente).
+  //ponteiro para apontar o atual ao primeiro elemento da lista (como o i = 0 para vetores, aponta para o primeiro campo para apontar aos pr√≥ximos, poss√≠velmente).
   Lista *atual = primeiro;
   Lista *atual_funcionario = primeiro;
   unsigned long int codigo_valida = 0, codigo_medico = 0;
   int i = 0;
 
-  //Requisitando e lendo o cÛdigo do paciente a ser alterado.
-  printf("  CÛdigo do paciente para efetuar o agendamento: ");
+  //Requisitando e lendo o c√≥digo do paciente a ser alterado.
+  printf("  C√≥digo do paciente para efetuar o agendamento: ");
   fflush(stdin);
   scanf("%u",&codigo_valida);
 
@@ -117,39 +116,39 @@ typedef struct lista{
   //Listando os dados do paciente.
   printf("\n  Paciente Encontrado!\n");
   printf("\n  Nome: %s", atual->nome);
-  printf("\n  EndereÁo: %s", atual->endereco);
+  printf("\n  Endere√ßo: %s", atual->endereco);
   printf("\n  Sexo: %s", atual->sexo);
   printf("\n  Data de nascimento: %d/%d/%d\n\n", atual->nascimento.dia, atual->nascimento.mes, atual->nascimento.ano);
     //printf("Documento: %s \n\n", atual->CPF);
 
     printf("\n  Escolha a especialidade: \n");
-    printf("  (1) Cardiologia\n  (2) Endocrinologia\n  (3) Neurologia\n  (4) NutriÁ„o\n  (5) Psicologia da Sa˙de\n  (6) Psiquiatria\n");
+    printf("  (1) Cardiologia\n  (2) Endocrinologia\n  (3) Neurologia\n  (4) Nutri√ß√£o\n  (5) Psicologia da Sa√∫de\n  (6) Psiquiatria\n");
     do{
-      printf("\n  Informe um n˙mero v·lido: ");
+      printf("\n  Informe um n√∫mero v√°lido: ");
       fflush(stdin); scanf("%d", &funcionario.especialidade);
   }while(funcionario.especialidade != 1 && funcionario.especialidade != 2 && funcionario.especialidade != 3 && funcionario.especialidade != 4 && funcionario.especialidade != 5 && funcionario.especialidade != 6);
 
 
-        //Imprimindo os mÈdicos da lista de acordo com a especialidade..
+        //Imprimindo os m√©dicos da lista de acordo com a especialidade..
             for(atual_funcionario = primeiro; atual_funcionario != NULL; atual_funcionario = atual_funcionario->prox){
                     if (atual_funcionario->cargo == 2 && funcionario.especialidade == atual_funcionario->especialidade) {
                   printf("\n\n | Especialista | ");
                   printf("\n  Nome: %s", atual_funcionario->f_nome);
                   printf("\n  Sexo: %s", atual_funcionario->f_sexo);
                   printf("\n  CRM: %s", atual_funcionario->CRM);
-                  printf("\n  CÛdigo: %u", atual_funcionario->f_codigo);
+                  printf("\n  C√≥digo: %u", atual_funcionario->f_codigo);
         }
     }
 
     atual_funcionario = primeiro;
-    printf("\n\n  Informe o cÛdigo do mÈdico que realizar· a consulta: ");
+    printf("\n\n  Informe o c√≥digo do m√©dico que realizar√° a consulta: ");
     fflush(stdin); scanf("%d", &codigo_medico);
       while(atual_funcionario != NULL && atual_funcionario->f_codigo != codigo_medico)
-      //Procurando o mÈdico na lista
+      //Procurando o m√©dico na lista
       atual_funcionario = atual_funcionario->prox;
       }
       if (atual_funcionario == NULL) {
-        printf("\n\n  MÈdico n„o encontrado.\n");
+        printf("\n\n  M√©dico n√£o encontrado.\n");
         system("pause");
         system("cls");
         Agendamentos();
@@ -242,7 +241,7 @@ typedef struct lista{
                     break;
 
             case 3:
-                printf("           MAR«O 2021       \n");
+                printf("           MAR√áO 2021       \n");
                 printf(" |-----------------------------|\n");
                 printf(" | dom seg ter qua qui sex sab |\n");
                 printf(" | --   1   2   3   4   5   6  |\n");
@@ -295,11 +294,11 @@ typedef struct lista{
                         cont = 1;
                     }
                     else if(dia == 2){
-                        printf("  FECHADO!\n Feriado Paix„o de Cristo!\n");
+                        printf("  FECHADO!\n Feriado Paix√£o de Cristo!\n");
                         cont = 1;
                     }
                     else if(dia == 4){
-                        printf("  FECHADO! Domingo de P·scoa\n");
+                        printf("  FECHADO! Domingo de P√°scoa\n");
                         cont = 1;
                     }
                     else if(dia == 21){
@@ -343,7 +342,7 @@ typedef struct lista{
                         cont = 1;
                     }
                     else if(dia == 9){
-                        printf("  FECHADO! Domingo Dia das M„es\n");
+                        printf("  FECHADO! Domingo Dia das M√£es\n");
                         cont = 1;
                     }
 
@@ -480,7 +479,7 @@ typedef struct lista{
                         cont = 1;
                     }
                     else if(dia == 7){
-                        printf("  FECHADO!\n Feriado de IndependÍncia!\n");
+                        printf("  FECHADO!\n Feriado de Independ√™ncia!\n");
                         cont = 1;
                     }
                     else {
@@ -515,7 +514,7 @@ typedef struct lista{
                         cont = 1;
                     }
                     else if(dia == 12){
-                        printf("  FECHADO!\n Feriado Nossa Senhora de Aparecida!\n Dia das CrianÁas!\n");
+                        printf("  FECHADO!\n Feriado Nossa Senhora de Aparecida!\n Dia das Crian√ßas!\n");
                         cont = 1;
                     }
                     else {
@@ -550,7 +549,7 @@ typedef struct lista{
                         cont = 1;
                     }
                     else if(dia == 15){
-                        printf("  FECHADO!\n Feriado ProclamaÁ„o da Rep˙blica!\n");
+                        printf("  FECHADO!\n Feriado Proclama√ß√£o da Rep√∫blica!\n");
                         cont = 1;
                     }
                     else {
@@ -588,7 +587,7 @@ typedef struct lista{
                         cont = 1;
                     }
                     else if(dia == 31){
-                        printf("  FECHADO!\n VÈspera de Ano Novo!\n");
+                        printf("  FECHADO!\n V√©spera de Ano Novo!\n");
                         cont = 1;
                     }
                     else {
@@ -600,7 +599,7 @@ typedef struct lista{
                     break;
 
             default:
-                printf("  Mes n„o encontrado!\n");
+                printf("  Mes n√£o encontrado!\n");
                 system("pause");
                 system("cls");
                 break;
@@ -623,7 +622,7 @@ typedef struct lista{
     printf("  | A |  (9)  9:00  | A |  (14) 14:00  |\n");
     printf("  | N |  (10) 10:00 | R |  (15) 15:00  |\n");
     printf("  | H |  (11) 11:00 | D |  (16) 16:00  |\n");
-    printf("  | √ |   -- -- --  | E |   -- -- --  |\n");
+    printf("  | √É |   -- -- --  | E |   -- -- --  |\n");
     printf("  +-----------------+-----------------+\n\n");
 
     do {
@@ -632,32 +631,32 @@ typedef struct lista{
     }while(paciente.agendamento.hora[paciente.agendamento.contador] < 8 && paciente.agendamento.hora[paciente.agendamento.contador] > 16);
 
 
-    //Adicionando as informaÁıes do agendamendo ao paciente
+    //Adicionando as informa√ß√µes do agendamendo ao paciente
     atual->agendamento.contador++;
     atual->agendamento.mes[atual->agendamento.contador] = paciente.agendamento.mes[paciente.agendamento.contador];
     atual->agendamento.dia[atual->agendamento.contador] = paciente.agendamento.dia[paciente.agendamento.contador];
     atual->agendamento.hora[atual->agendamento.contador] = paciente.agendamento.hora[paciente.agendamento.contador];
     }
 
-  //Mensagem caso o paciente n„o seja encontrado.
+  //Mensagem caso o paciente n√£o seja encontrado.
   if(atual == NULL)
-  printf("\n  paciente n„o encontrado.\n");
+  printf("\n  paciente n√£o encontrado.\n");
 
   system("pause");
   system("cls");
   menu_Secretario();
   }
 
- //FunÁ„o do tipo Lista (estrutura) para inserir o primeiro login do Administrador
+ //Fun√ß√£o do tipo Lista (estrutura) para inserir o primeiro login do Administrador
 Lista* inserir_adm (Lista *primeiro){
-  //CriaÁ„o de uma lista que aponta para o primeiro elemento nulo
+  //Cria√ß√£o de uma lista que aponta para o primeiro elemento nulo
   Lista *atual = primeiro;
 
     funcionario.login_adm.cargo = 0;
     funcionario.login_adm.senha = 123456;
     funcionario.login_adm.codigo = 123456;
 
-    //Alocando os espaÁos e guardando as informaÁıes do paciente.
+    //Alocando os espa√ßos e guardando as informa√ß√µes do paciente.
     Lista* Novofuncionario = (Lista*) malloc (sizeof(Lista));
 
     Novofuncionario->cargo = funcionario.login_adm.cargo;
@@ -687,24 +686,24 @@ void inicio () {
     printf(" | ");printf("\t\t\t              Inicio");printf("\t\t                      |\n");
     printf(" *----------------------------------------------------------------------------*\n");
 
-  //Menu de opÁıes da tela inicial
+  //Menu de op√ß√µes da tela inicial
   printf("  <1> Para efetuar o login\n");
   printf("  <S> Para sair do programa\n\n");
 
-  //Lendo a opÁ„o do menu
-  printf("  Escolha uma opÁ„o: ");
+  //Lendo a op√ß√£o do menu
+  printf("  Escolha uma op√ß√£o: ");
   op = getch();
   system("cls");
 
   switch (op) {
-    case '1': //Levar para o procedimento de validaÁ„o de login
+    case '1': //Levar para o procedimento de valida√ß√£o de login
               valida_Login(primeiro);
 
     case 's': //Fechar o programa
               //exit(0);
               system("taskkill/IM cb_console_runner.exe"); //Fechar o programa.
 
-    default: printf("\n\n  OpÁ„o inv·lida.\n");
+    default: printf("\n\n  Op√ß√£o inv√°lida.\n");
                     system("pause");
                     system("cls");
               break;
@@ -722,7 +721,7 @@ void valida_Login(Lista *primeiro) {
   //Ponteiro para apontar atual ao primeiro elemento (nulo) da lista
   Lista *atual = primeiro;
 
-  //Vari·veis
+  //Vari√°veis
   unsigned long int f_codigo = 0;
   unsigned long int valida_senha;
 
@@ -732,8 +731,8 @@ do{
   printf(" | ");printf("\t\t\t            Login");printf("\t\t                      |\n");
   printf(" *----------------------------------------------------------------------------*\n");
 
-    //Requisitando e lendo o cÛdigo do paciente a ser alterado.
-    printf("\n\n  CÛdigo do funcion·rio: ");
+    //Requisitando e lendo o c√≥digo do paciente a ser alterado.
+    printf("\n\n  C√≥digo do funcion√°rio: ");
      fflush(stdin);
     scanf("%u",&f_codigo);
 
@@ -751,12 +750,12 @@ do{
     //Procurando o funcionario na lista.
     while(atual != NULL && atual->f_codigo != f_codigo){
       atual = atual->prox;
-      /*Para enquanto atual n„o for nulo (tiver dados preenchidos) e para enquanto atual->f_codigo (ponteiro para o "atual" cÛdigo armazenado na lista)
-       for diferente do cÛdigo inderido no requisito (linha ), o atual aponta para o prÛximo elemento da lista.*/
+      /*Para enquanto atual n√£o for nulo (tiver dados preenchidos) e para enquanto atual->f_codigo (ponteiro para o "atual" c√≥digo armazenado na lista)
+       for diferente do c√≥digo inderido no requisito (linha ), o atual aponta para o pr√≥ximo elemento da lista.*/
     }
 
             if(atual == NULL){
-      printf("\n  funcion·rio n„o encontrado.\n");
+      printf("\n  funcion√°rio n√£o encontrado.\n");
           system("  pause");
            system("cls");
             inicio();
@@ -764,7 +763,7 @@ do{
 
 
 
-    //Validando a senha e direcionando para a respectiva tela a partir do cargo (informado ao cadastrar um funcion·rio)
+    //Validando a senha e direcionando para a respectiva tela a partir do cargo (informado ao cadastrar um funcion√°rio)
     if (valida_senha == atual->senha) {
         system("cls");
       if(atual->cargo == 1)
@@ -779,38 +778,38 @@ do{
         system("cls");
         inicio();
     }
-    //Mensagem caso o funcionario n„o seja encontrado.
+    //Mensagem caso o funcionario n√£o seja encontrado.
   }while (atual != NULL);
 }
 
 //Procedimento para criar a tela do Administrador
 void menu_Administrador() {
 
-  //Vari·veis
+  //Vari√°veis
   char op;
 
-  //ArtifÌcio para repetir as opÁıes do menu enquando n„o for digitada a para voltar
+  //Artif√≠cio para repetir as op√ß√µes do menu enquando n√£o for digitada a para voltar
   while(op != 'v'){
     //Menu de opcoes
     printf(" *----------------------------------------------------------------------------*\n");
     printf(" | ");printf("\t\t\t     Bem-vindo(a), ADM");printf("\t\t                      |\n");
     printf(" *----------------------------------------------------------------------------*\n");
-    printf("  <1> Para inserir funcion·rios\n");
-    printf("  <2> Para excluir funcion·rios\n");
-    printf("  <3> Para listar funcion·rios\n");
-    printf("  <4> Para alterar dados de funcion·rios\n");
-    printf("  <V> Para voltar ao inÌcio\n\n");
+    printf("  <1> Para inserir funcion√°rios\n");
+    printf("  <2> Para excluir funcion√°rios\n");
+    printf("  <3> Para listar funcion√°rios\n");
+    printf("  <4> Para alterar dados de funcion√°rios\n");
+    printf("  <V> Para voltar ao in√≠cio\n\n");
 
-    //Lendo a opÁ„o do menu
-    printf("  Escolha uma opÁ„o: ");
+    //Lendo a op√ß√£o do menu
+    printf("  Escolha uma op√ß√£o: ");
     fflush(stdin);
     op = getch();
 
     switch (op) {
-      case '1': //Apontanto o ponteiro primeiro para a funÁ„o inserir_funcionario()
+      case '1': //Apontanto o ponteiro primeiro para a fun√ß√£o inserir_funcionario()
               system("cls");
     printf(" *----------------------------------------------------------------------------*\n");
-    printf(" | ");printf("\t\t\t     NOVO CADASTRO DE FUNCION¡RIO");printf("\t\t      |\n");
+    printf(" | ");printf("\t\t\t     NOVO CADASTRO DE FUNCION√ÅRIO");printf("\t\t      |\n");
     printf(" *----------------------------------------------------------------------------*\n");
               primeiro = inserir_funcionario(primeiro);
               break;
@@ -822,7 +821,7 @@ void menu_Administrador() {
       case '3':  //Chamando o procedimento listar_funcionario()
                     system("cls");
                     printf(" *----------------------------------------------------------------------------*\n");
-                    printf(" | ");printf("\t\t\t     FUNCION¡RIOS CADASTRADOS");printf("\t\t      |\n");
+                    printf(" | ");printf("\t\t\t     FUNCION√ÅRIOS CADASTRADOS");printf("\t\t      |\n");
                     printf(" *----------------------------------------------------------------------------*\n");
                     listar_funcionario(primeiro);
 
@@ -835,24 +834,24 @@ void menu_Administrador() {
 
 
       case 'V':
-      case 'v': //ArtifÌcio para aceitar tanto mai˙scula como min˙scula
+      case 'v': //Artif√≠cio para aceitar tanto mai√∫scula como min√∫scula
               system("cls");
-              //Voltar ao inÌcio do programa
+              //Voltar ao in√≠cio do programa
               inicio();
               break;
 
-      default: //Mensagem para caso o usu·rio digite uma opÁ„o inv·lida
-               printf("\n  Escolha uma opÁ„o v·lida.\n");
+      default: //Mensagem para caso o usu√°rio digite uma op√ß√£o inv√°lida
+               printf("\n  Escolha uma op√ß√£o v√°lida.\n");
                system("cls");
                break;
     }
   }
 }
 
-//Procedimento para criar a tela do MÈdico
+//Procedimento para criar a tela do M√©dico
 void menu_Medico() {
 
-  //Vari·veis
+  //Vari√°veis
   char op_med;
 
   //Menu de opcoes
@@ -870,32 +869,32 @@ void menu_Medico() {
   printf("\n\n\n\n");
 
   do {
-      printf("\t\t   Escolha uma opÁ„o: ");
+      printf("\t\t   Escolha uma op√ß√£o: ");
 
-      //Lendo a opÁ„o do menu
+      //Lendo a op√ß√£o do menu
       fflush(stdin);
       op_med = getch();
 
       //Menu de opcoes
       switch(op_med) {
-      case '1': //Chamando o procedimento para listar os agendamentos do mÈdico
+      case '1': //Chamando o procedimento para listar os agendamentos do m√©dico
                 system("cls");
               agenda();
               break;
 
-      case '2': //Chamando o procedimento para buscar a ficha mÈdica do paciente
+      case '2': //Chamando o procedimento para buscar a ficha m√©dica do paciente
                 system("cls");
                 primeiro = buscar(primeiro);
                 break;
 
-      case 'S': //ArtifÌcio para aceitar tanto mai˙scula como min˙scula
+      case 'S': //Artif√≠cio para aceitar tanto mai√∫scula como min√∫scula
       case 's':
-              //Voltar ao inÌcio do programa
+              //Voltar ao in√≠cio do programa
               inicio();
               break;
 
-      default: //Mensagem para caso o usu·rio digite uma opÁ„o inv·lida
-              printf("\n  Escolha uma opÁ„o v·lida.\n");
+      default: //Mensagem para caso o usu√°rio digite uma op√ß√£o inv√°lida
+              printf("\n  Escolha uma op√ß√£o v√°lida.\n");
               system("cls");
               break;
       }
@@ -903,19 +902,19 @@ void menu_Medico() {
 }
 
 void agenda() {
-//Ponteiro para percorrer a lista sem perder a referÍncia do primeiro elemento da lista.
+//Ponteiro para percorrer a lista sem perder a refer√™ncia do primeiro elemento da lista.
   Lista* atual;
 
   int i;
 
-  //Imprimindo os pacientes da lista, e suas repectivas informaÁıes.
+  //Imprimindo os pacientes da lista, e suas repectivas informa√ß√µes.
   for(atual = primeiro; atual != NULL; atual = atual->prox){
     if (atual->cargo != 1 && atual->cargo != 2 && atual->cargo != 3) {
        // if(atual->agendamento.especialidade == atual->especialidade) {
       printf("\n  Nome: %s", atual->nome);
       printf("\n  Sexo: %s", atual->sexo);
       printf("\n  Data de nascimento: %d/%d/%d", atual->nascimento.dia, atual->nascimento.mes, atual->nascimento.ano);
-      printf("\n  CÛdigo: %u", atual->codigo);
+      printf("\n  C√≥digo: %u", atual->codigo);
 
       if(atual->agendamento.contador != 0) {
         printf("\n\n | Agendamentos |\n\n");
@@ -932,17 +931,17 @@ void agenda() {
     menu_Medico();
 }
 
-//Procedimento para criar a tela do Secret·rio
+//Procedimento para criar a tela do Secret√°rio
 void menu_Secretario() {
 
-  //Vari·veis
+  //Vari√°veis
   char op_sec;
 
-  //ArtifÌcio para repetir as opÁıes do menu enquando n„o for digitada a para voltar
+  //Artif√≠cio para repetir as op√ß√µes do menu enquando n√£o for digitada a para voltar
   while(op_sec != 's'){
 
     printf(" *----------------------------------------------------------------------------*\n");
-    printf(" | ");printf("\t\t\t     Bem-vindo(a), secret·rio(a)");printf("\t\t      |\n");
+    printf(" | ");printf("\t\t\t     Bem-vindo(a), secret√°rio(a)");printf("\t\t      |\n");
     printf(" *----------------------------------------------------------------------------*\n");
     printf("\t\t\t         |   MENU   ");printf("|\t\t\t\t\n\n");
     printf("\t\t   | <1>  Menu de Cadastros            |\n");
@@ -952,9 +951,9 @@ void menu_Secretario() {
     printf("\t\t   | <S>  Sair                         |\n");
     printf("\t\t   |-----------------------------------|");
     printf("\n\n\n\n");
-    printf("\t\t   Escolha uma opÁ„o: ");
+    printf("\t\t   Escolha uma op√ß√£o: ");
 
-    //Lendo a opÁ„o do menu
+    //Lendo a op√ß√£o do menu
     fflush(stdin);
     op_sec = getche();
     system("cls");
@@ -965,8 +964,8 @@ void menu_Secretario() {
 
       case '2': Agendamentos(); //Chamando o procedimento de agendamentos
 
-      case 'S': //ArtifÌcio para aceitar tanto mai˙scula como min˙scula
-      case 's': inicio(); //Voltar ao inÌcio do programa
+      case 'S': //Artif√≠cio para aceitar tanto mai√∫scula como min√∫scula
+      case 's': inicio(); //Voltar ao in√≠cio do programa
     }
   }
 }
@@ -974,13 +973,13 @@ void menu_Secretario() {
 //Procedimento para criar a tela de Cadastros de paciente.
 void Cadastros() {
 
-  //Vari·veis
+  //Vari√°veis
   char op;
 
-  //ArtifÌcio para repetir o programa.
+  //Artif√≠cio para repetir o programa.
   while(op!='s') {
 
-    //Menu de opÁıes
+    //Menu de op√ß√µes
     printf("\n");
     printf("\t\t\t         |   MENU Cadastros ");printf("|\t\t\t\t\n\n");
     printf("\t\t   | <1>  Novo cadastro                |\n");
@@ -994,16 +993,16 @@ void Cadastros() {
     printf("\t\t   | <V>  Voltar                       |\n");
     printf("\t\t   |-----------------------------------|");
     printf("\n\n\n\n");
-    printf("\t\t   Escolha uma opÁ„o: ");
+    printf("\t\t   Escolha uma op√ß√£o: ");
 
-    //Lendo as opÁıes do menu
+    //Lendo as op√ß√µes do menu
     fflush(stdin);
     op = getch();
     //Aplicando as funcionalidades do menu
     switch(op) {
 
       case '1':
-      //Chamando a funÁ„o para cadastrar um paciente.
+      //Chamando a fun√ß√£o para cadastrar um paciente.
       fflush(stdin);
       system("cls");
       printf(" *----------------------------------------------------------------------------*\n");
@@ -1025,7 +1024,7 @@ void Cadastros() {
       break;
 
       case '3':
-      //Chamando a funÁ„o para excluir um cadastro de paciente.
+      //Chamando a fun√ß√£o para excluir um cadastro de paciente.
       system ("cls");
       primeiro = excluir_paciente(primeiro);
       getch();
@@ -1045,13 +1044,13 @@ void Cadastros() {
 
       case 'V':
       case 'v':
-      //Voltando ao menu do Secret·rio.
+      //Voltando ao menu do Secret√°rio.
       system("cls");
       menu_Secretario();
       break;
 
       default:
-      //Previnindo a situaÁ„o de um usu·rio qualquer, digitar uma opc„o inexistente no menu.
+      //Previnindo a situa√ß√£o de um usu√°rio qualquer, digitar uma opc√£o inexistente no menu.
       system("cls");
       break;
     }
@@ -1061,10 +1060,10 @@ void Cadastros() {
 //Procedimento para criar a tela de Agendamentos do paciente.
 void Agendamentos() {
 
-  //Vari·veis
+  //Vari√°veis
   char op;
 
-  //ArtifÌcio para repetir o programa.
+  //Artif√≠cio para repetir o programa.
   while(op!='s' && op != '1' && op != '2' ) {
 
     //Menu de opcoes-cadastro
@@ -1077,9 +1076,9 @@ void Agendamentos() {
     printf("\t\t   | <V>  Voltar                       |\n");
     printf("\t\t   |-----------------------------------|");
     printf("\n\n\n\n");
-    printf("\t\t   Escolha uma opÁ„o: ");
+    printf("\t\t   Escolha uma op√ß√£o: ");
 
-    //Lendo as opÁıes do menu
+    //Lendo as op√ß√µes do menu
     fflush(stdin);
     op = getch();
 
@@ -1106,34 +1105,34 @@ void Agendamentos() {
 
       case 'V':
       case 'v':
-            //Voltano ao menu do Secret·rio.
+            //Voltano ao menu do Secret√°rio.
             system("cls");
             menu_Secretario();
             break;
 
       default:
-            //Previnindo a situaÁ„o de um usu·rio digitar uma opc„o inv·lida no menu.
+            //Previnindo a situa√ß√£o de um usu√°rio digitar uma opc√£o inv√°lida no menu.
             system("cls");
             break;
     }
   }
 }
 
-//FunÁ„o do tipo Lista (estrutura) para inserir funcion·rios
+//Fun√ß√£o do tipo Lista (estrutura) para inserir funcion√°rios
 Lista* inserir_funcionario (Lista *primeiro){
 
-  //CriaÁ„o de uma lista que aponta para o primeiro elemento nulo
+  //Cria√ß√£o de uma lista que aponta para o primeiro elemento nulo
   Lista *atual = primeiro;
 
-  //Vari·veis
+  //Vari√°veis
   char identificador= 'F';
   char opcao, digitos[6];
 
-  //Lendo as informaÁıes do paciente.
+  //Lendo as informa√ß√µes do paciente.
   printf("  Nome: ");
   fflush (stdin); gets(funcionario.f_nome); strlwr(funcionario.f_nome);
 
-  printf("\n  EndereÁo - rua, n˙mero, bairro e cidade: ");
+  printf("\n  Endere√ßo - rua, n√∫mero, bairro e cidade: ");
   fflush (stdin); gets(funcionario.f_endereco); strlwr(funcionario.f_endereco);
 
   printf("\n  Sexo: ");
@@ -1142,25 +1141,25 @@ Lista* inserir_funcionario (Lista *primeiro){
   printf("\n  Documento (CPF): ");
   fflush(stdin); gets(funcionario.f_CPF); strlwr(funcionario.f_CPF);
 
-  printf("\n  Cargo: \n  (1) Secret·rio\n  (2) MÈdico\n  (3) Recepcionista\n  (4) Faxineiro\n");
-  //ArtifÌcio para que somente os seguintes n˙meros sejam utilizados
+  printf("\n  Cargo: \n  (1) Secret√°rio\n  (2) M√©dico\n  (3) Recepcionista\n  (4) Faxineiro\n");
+  //Artif√≠cio para que somente os seguintes n√∫meros sejam utilizados
   do{
-        printf("  Informe um n˙mero v·lido: ");
+        printf("  Informe um n√∫mero v√°lido: ");
       fflush(stdin); scanf("%d", &funcionario.cargo);
   }while(funcionario.cargo != 1 && funcionario.cargo != 2 && funcionario.cargo != 3 && funcionario.cargo != 4);
 
-  //CondiÁ„o para que seja armazenado o CRM apenas aos mÈdicos
+  //Condi√ß√£o para que seja armazenado o CRM apenas aos m√©dicos
   if(funcionario.cargo == 2) {
     printf("\n  Informe o CRM: ");
     fflush(stdin); gets(funcionario.CRM);
     printf("\n  Especialidade: \n");
-    printf("  (1) Cardiologia\n  (2) Endocrinologia\n  (3) Neurologia\n  (4) NutriÁ„o\n  (5) Psicologia da Sa˙de\n  (6) Psiquiatria\n");
+    printf("  (1) Cardiologia\n  (2) Endocrinologia\n  (3) Neurologia\n  (4) Nutri√ß√£o\n  (5) Psicologia da Sa√∫de\n  (6) Psiquiatria\n");
     do{
-      printf("  Informe um n˙mero v·lido: ");
+      printf("  Informe um n√∫mero v√°lido: ");
       fflush(stdin); scanf("%d", &funcionario.especialidade);
   }while(funcionario.especialidade != 1 && funcionario.especialidade != 2 && funcionario.especialidade != 3 && funcionario.especialidade != 4 && funcionario.especialidade != 5 && funcionario.especialidade != 6);
   }
-    //CondiÁ„o para pegar senha somente aos funcion·rios secret·rio, mÈdico e recepcionista.
+    //Condi√ß√£o para pegar senha somente aos funcion√°rios secret√°rio, m√©dico e recepcionista.
   if (funcionario.cargo == 1 || funcionario.cargo == 2) {
   printf("\n  Senha: ");
   fflush(stdin); scanf("%u", &funcionario.senha);
@@ -1184,20 +1183,20 @@ Lista* inserir_funcionario (Lista *primeiro){
         break;
 
       default:
-        printf("\n  Escolha uma opÁ„o v·lida: ");
+        printf("\n  Escolha uma op√ß√£o v√°lida: ");
         break;
       }
   }while(opcao != 's');
 
 
-  /*Pegar somente os 6 primeiros digitos do CPF e coloc·-los no cÛdigo do paciente*/
+  /*Pegar somente os 6 primeiros digitos do CPF e coloc√°-los no c√≥digo do paciente*/
   memcpy(digitos, &funcionario.f_CPF[0], 6);
   digitos[6] = '\0'; // adiciona o terminador de linha
   funcionario.f_codigo = atol(digitos);
 
-  //Verificando os campos do CPF (limitando somente a n˙meros)
+  //Verificando os campos do CPF (limitando somente a n√∫meros)
 
-  //Verificando se o cadastro j· existe.
+  //Verificando se o cadastro j√° existe.
   for(atual=primeiro; atual!=NULL; atual=atual->prox){
     if(atual->f_codigo==funcionario.f_codigo){
       identificador = 'V';
@@ -1207,7 +1206,7 @@ Lista* inserir_funcionario (Lista *primeiro){
 
 
   if(identificador!='V' && (strlen(funcionario.f_nome)!=1 && strlen(funcionario.f_endereco)!=1 && strlen(funcionario.f_sexo) !=1 && strlen(funcionario.f_CPF) !=1)){
-    //Alocando os espaÁos e guardando as informaÁıes do paciente.
+    //Alocando os espa√ßos e guardando as informa√ß√µes do paciente.
     Lista* Novofuncionario = (Lista*) malloc (sizeof(Lista));
     strcpy(Novofuncionario->f_nome, funcionario.f_nome);
     strcpy(Novofuncionario->f_endereco, funcionario.f_endereco);
@@ -1227,7 +1226,7 @@ Lista* inserir_funcionario (Lista *primeiro){
     system("cls");
     return Novofuncionario;
   }else{
-     printf("  Cadastro inv·lido.");
+     printf("  Cadastro inv√°lido.");
      printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
      getch();
      system("cls");
@@ -1235,20 +1234,20 @@ Lista* inserir_funcionario (Lista *primeiro){
   }
 }
 
-//FunÁ„o do tipo Lista (estrutura) para inserir pacientes
+//Fun√ß√£o do tipo Lista (estrutura) para inserir pacientes
 Lista *inserir_paciente (Lista *primeiro){
 
-  //CriaÁ„o de uma lista que aponta para o primeiro elemento nulo
+  //Cria√ß√£o de uma lista que aponta para o primeiro elemento nulo
   Lista *atual = primeiro;
 
-  //Vari·veis
+  //Vari√°veis
   char identificador= 'F';
   char opcao, digitos[6];
 
-  //Lendo as informaÁıes do paciente.
+  //Lendo as informa√ß√µes do paciente.
   printf("  Nome: ");
    fflush (stdin); gets(paciente.nome); strlwr(paciente.nome);
-  printf("\n  EndereÁo: ");
+  printf("\n  Endere√ßo: ");
    fflush (stdin); gets(paciente.endereco); strlwr(paciente.endereco);
   printf("\n  Sexo: ");
    fflush(stdin); gets(paciente.sexo); strlwr(paciente.sexo);
@@ -1256,14 +1255,14 @@ Lista *inserir_paciente (Lista *primeiro){
    fflush(stdin);
    printf("\n  Dia: "); scanf("%d", &paciente.nascimento.dia);
    fflush(stdin);
-   printf("\n  MÍs: "); scanf("%d", &paciente.nascimento.mes);
+   printf("\n  M√™s: "); scanf("%d", &paciente.nascimento.mes);
    fflush(stdin);
    printf("\n  Ano: "); scanf("%d", &paciente.nascimento.ano);
   printf("\n  Documento (CPF): ");
    fflush(stdin); gets(paciente.CPF); strlwr(paciente.CPF);
   data(); //Chama o procedimento data() para pegar a data/hora do cadastro
 
-  //Lendo as opÁıes do menu
+  //Lendo as op√ß√µes do menu
   printf("\n  Confirmar o cadastro de %s? (s/n) ", paciente.nome);
   fflush(stdin);
   opcao = getch();
@@ -1276,19 +1275,19 @@ Lista *inserir_paciente (Lista *primeiro){
               menu_Secretario();
               break;
 
-    default: printf("  Escolha uma opÁ„o v·lida: ");
+    default: printf("  Escolha uma op√ß√£o v√°lida: ");
     }
 
     fflush(stdin);
 
-  /*Pegar somente os 6 primeiros digitos do CPF e coloc·-los no cÛdigo do paciente*/
+  /*Pegar somente os 6 primeiros digitos do CPF e coloc√°-los no c√≥digo do paciente*/
   memcpy(digitos, &paciente.CPF[0], 6);
   digitos[6] = '\0'; // adiciona o terminador de linha
   paciente.codigo = atol(digitos);
 
-//Verificando os campos do CPF (limitando somente a n˙meros)
+//Verificando os campos do CPF (limitando somente a n√∫meros)
 
-  //Verificando se o cadastro j· existe.
+  //Verificando se o cadastro j√° existe.
   for(atual=primeiro; atual!=NULL; atual=atual->prox){
     if(atual->codigo==paciente.codigo){
     identificador = 'V';
@@ -1298,7 +1297,7 @@ Lista *inserir_paciente (Lista *primeiro){
 
 
 if(identificador!='V' && (strlen(paciente.nome)!=1 && strlen(paciente.endereco)!=1 && strlen(paciente.sexo) !=1 && strlen(paciente.CPF) !=1)){
-  //Alocando os espaÁos e guardando as informaÁıes do paciente.
+  //Alocando os espa√ßos e guardando as informa√ß√µes do paciente.
   Lista* Novopaciente=(Lista*) malloc (sizeof(Lista));
   strcpy(Novopaciente->nome, paciente.nome);
   strcpy(Novopaciente->endereco, paciente.endereco);
@@ -1314,7 +1313,7 @@ if(identificador!='V' && (strlen(paciente.nome)!=1 && strlen(paciente.endereco)!
   printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
   return Novopaciente;
   }else{
-    printf("  Cadastro inv·lido.");
+    printf("  Cadastro inv√°lido.");
     printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
     return primeiro;
   }
@@ -1324,20 +1323,20 @@ if(identificador!='V' && (strlen(paciente.nome)!=1 && strlen(paciente.endereco)!
 //Procedimento para listar todos os pacientes cadastrados.
 void listar_paciente (Lista* primeiro){
 
-  //Ponteiro para percorrer a lista sem perder a referÍncia do primeiro elemento da lista.
+  //Ponteiro para percorrer a lista sem perder a refer√™ncia do primeiro elemento da lista.
   Lista* atual;
 
   int i;
 
-  //Imprimindo os pacientes da lista, e suas repectivas informaÁıes.
+  //Imprimindo os pacientes da lista, e suas repectivas informa√ß√µes.
   for(atual = primeiro; atual != NULL; atual = atual->prox){
     if (atual->cargo != 1 && atual->cargo != 2 && atual->cargo != 3) {
       printf("\n  Nome: %s", atual->nome);
-      printf("\n  EndereÁo: %s", atual->endereco);
+      printf("\n  Endere√ßo: %s", atual->endereco);
       printf("\n  Sexo: %s", atual->sexo);
       printf("\n  Data de nascimento: %d/%d/%d", atual->nascimento.dia, atual->nascimento.mes, atual->nascimento.ano);
       printf("\n  Documento: %s\n", atual->CPF);
-      printf("\n  CÛdigo: %u", atual->codigo);
+      printf("\n  C√≥digo: %u", atual->codigo);
       printf("\n  Data do cadastro: %s", atual->data_cadastro);
 
       if(atual->agendamento.contador != 0) {
@@ -1363,31 +1362,31 @@ void listar_paciente (Lista* primeiro){
   printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
   getch();
   system("cls");
-  //Caso n„o seja o Secret·rio que emitiu o relatÛrio, retornar· ao menu do ADM, pois s„o os dois ˙nicos que utilizar„o este procedimento.
+  //Caso n√£o seja o Secret√°rio que emitiu o relat√≥rio, retornar√° ao menu do ADM, pois s√£o os dois √∫nicos que utilizar√£o este procedimento.
 
     Cadastros();
 
 }
 
-//Procedimento para listar todos os funcion·rios cadastrados.
+//Procedimento para listar todos os funcion√°rios cadastrados.
 void listar_funcionario (Lista* primeiro){
 
-  //Ponteiro para percorrer a lista sem perder a referÍncia do primeiro elemento da lista.
+  //Ponteiro para percorrer a lista sem perder a refer√™ncia do primeiro elemento da lista.
   Lista* atual;
 
-  //Imprimindo os pacientes da lista, e suas repectivas informaÁıes.
+  //Imprimindo os pacientes da lista, e suas repectivas informa√ß√µes.
   for(atual = primeiro; atual != NULL; atual = atual->prox){
     printf("\n  Nome: %s", atual->f_nome);
-    printf("\n  EndereÁo: %s\n", atual->f_endereco);
+    printf("\n  Endere√ßo: %s\n", atual->f_endereco);
     printf("  Sexo: %s\n", atual->f_sexo);
     printf("  Documento: %s\n", atual->f_CPF);
     printf("\n  Cargo: ");
 
-    //CondiÁıes para que o programa exiba os respectivos cargos.
+    //Condi√ß√µes para que o programa exiba os respectivos cargos.
     if(atual->cargo == 1)
-      printf("Secret·rio");
+      printf("Secret√°rio");
     if(atual->cargo == 2){
-      printf("MÈdico");
+      printf("M√©dico");
       printf("\n  Especialidade: ");
       if(atual->especialidade == 1)
         printf("Cardiologista");
@@ -1398,7 +1397,7 @@ void listar_funcionario (Lista* primeiro){
       if(atual->especialidade == 4)
         printf("Nutricionista");
       if(atual->especialidade == 5)
-        printf("Psicologo(a) da Sa˙de");
+        printf("Psicologo(a) da Sa√∫de");
       if(atual->especialidade == 6)
         printf("Psiquiatra");
         printf("\n  CRM: %s", atual->CRM);
@@ -1412,7 +1411,7 @@ void listar_funcionario (Lista* primeiro){
   }
 
   if(primeiro==NULL)
-    printf("  Nenhum funcion·rio cadastrado.");
+    printf("  Nenhum funcion√°rio cadastrado.");
 
   printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU.");
   getch();
@@ -1420,20 +1419,20 @@ void listar_funcionario (Lista* primeiro){
   menu_Administrador();
 }
 
-/* funÁ„o busca: busca um elemento (pacientes especÌficos) na lista */
+/* fun√ß√£o busca: busca um elemento (pacientes espec√≠ficos) na lista */
 Lista* buscar(Lista *primeiro) {
 
-  //ponteiro para apontar o atual ao primeiro elemento da lista (como o i = 0 para vetores, aponta para o primeiro campo para apontar aos prÛximos, possÌvelmente).
+  //ponteiro para apontar o atual ao primeiro elemento da lista (como o i = 0 para vetores, aponta para o primeiro campo para apontar aos pr√≥ximos, poss√≠velmente).
   Lista *atual = primeiro;
   Lista *atual_funcionario = primeiro;
   unsigned long int codigo = 0;
   char op, op2;
   int i = 1;
       printf(" *----------------------------------------------------------------------------*\n");
-      printf(" | ");printf("\t\t\t       FICHA M…DICA     ");printf("\t\t\t      |\n");
+      printf(" | ");printf("\t\t\t       FICHA M√âDICA     ");printf("\t\t\t      |\n");
       printf(" *----------------------------------------------------------------------------*\n");
-  //Requisitando e lendo o cÛdigo do paciente a ser alterado.
-  printf("  CÛdigo do paciente a ser pesquisado: ");
+  //Requisitando e lendo o c√≥digo do paciente a ser alterado.
+  printf("  C√≥digo do paciente a ser pesquisado: ");
   fflush(stdin);
   scanf("%u",&codigo);
 
@@ -1446,7 +1445,7 @@ Lista* buscar(Lista *primeiro) {
           //Listando os dados do paciente.
           printf("\n  Paciente Encontrado!\n");
           printf("\n  Nome: %s ", atual->nome);
-          //printf("EndereÁo: %s \n", atual->endereco);
+          //printf("Endere√ßo: %s \n", atual->endereco);
           printf("\n  Sexo: %s \n", atual->sexo);
           printf("\n  Data de nascimento: %d/%d/%d", atual->nascimento.dia, atual->nascimento.mes, atual->nascimento.ano);
 
@@ -1454,7 +1453,7 @@ Lista* buscar(Lista *primeiro) {
 
             printf("\n\n  Atestados: \n  %s\0 \n  ", atual->ficha_medica.atestado);
 
-             printf("\n\n  ObservaÁıes: \n  %s \n  ", atual->ficha_medica.obs);
+             printf("\n\n  Observa√ß√µes: \n  %s \n  ", atual->ficha_medica.obs);
 
            if(atual->agendamento.contador != 0) {
                 printf("\n  Agendamentos: \n");
@@ -1463,29 +1462,29 @@ Lista* buscar(Lista *primeiro) {
               }
           }
 
-        printf("\n\n  <1> Para receitu·rios");
+        printf("\n\n  <1> Para receitu√°rios");
         printf("\n  <2> Para emitir atestados");
-        printf("\n  <3> Para adicionar observaÁıes");
+        printf("\n  <3> Para adicionar observa√ß√µes");
           printf("\n\n  <V> Para voltar");
           do {
-          printf("\n  Escolha uma opÁ„o v·lida: ");
+          printf("\n  Escolha uma op√ß√£o v√°lida: ");
           fflush(stdin); op = getch();
 
           switch (op) {
-              case '1': //Anotar e exibir os receitu·rios
+              case '1': //Anotar e exibir os receitu√°rios
                         printf("\n\n  Escreva aqui para anotar: ");
                         fflush(" "); gets(paciente.ficha_medica.receituario); strlwr(paciente.ficha_medica.receituario);
                         strcat(atual->ficha_medica.receituario, paciente.ficha_medica.receituario);
                         system("pause");
                        break;
 
-              case '2': //O sistema ir· guardar as datas e as horas automaticamente.
+              case '2': //O sistema ir√° guardar as datas e as horas automaticamente.
                     data();
                     strcat(atual->ficha_medica.atestado, d.data_atual);
                     system("pause");
                        break;
 
-             case '3': //Anotar e exibir os receitu·rios
+             case '3': //Anotar e exibir os receitu√°rios
                       printf("\n\n  Escreva aqui para anotar: ");
                       fflush(stdin); gets(paciente.ficha_medica.obs); strlwr(paciente.ficha_medica.obs);
                       strcat(atual->ficha_medica.obs, paciente.ficha_medica.obs);
@@ -1499,9 +1498,9 @@ Lista* buscar(Lista *primeiro) {
      }
 
 
-  //Mensagem caso o paciente n„o seja encontrado.
+  //Mensagem caso o paciente n√£o seja encontrado.
   if(atual == NULL)
-    printf("\n  paciente n„o encontrado.");
+    printf("\n  paciente n√£o encontrado.");
 
   printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
   getch();
@@ -1509,13 +1508,13 @@ Lista* buscar(Lista *primeiro) {
   menu_Medico();
 }
 
-//FunÁ„o para excluir algum cadastro de paciente.
+//Fun√ß√£o para excluir algum cadastro de paciente.
 Lista* excluir_paciente(Lista *primeiro){
 
   Lista *anterior = NULL;//Ponteiro para saber o elemento anterior ao elemento atual da lista.
   Lista *atual = primeiro;//Ponteiro para percorrer a lista sem perder o primeiro elemento da lista.
 
-  //Vari·vel local codigo para fazer a comparaÁ„o.
+  //Vari√°vel local codigo para fazer a compara√ß√£o.
   unsigned long int codigo = 0;
   char op;
         printf(" *---------------------------------------------------------------------------\n");
@@ -1523,8 +1522,8 @@ Lista* excluir_paciente(Lista *primeiro){
       printf(" *----------------------------------------------------------------------------*\n");
 
 
-  //Requisitando e lendo o cÛdigo do paciente a ser excluÌdo.
-  printf("  CÛdigo do paciente a ser excluÌdo: ");
+  //Requisitando e lendo o c√≥digo do paciente a ser exclu√≠do.
+  printf("  C√≥digo do paciente a ser exclu√≠do: ");
   fflush(stdin);
   scanf("%u",&codigo);
 do {
@@ -1539,9 +1538,9 @@ do {
     atual = atual->prox;
   }
 
-  //Mensagem caso o paciente n„o seja encontrado na lista.
+  //Mensagem caso o paciente n√£o seja encontrado na lista.
   if(atual == NULL){
-    printf("\n  paciente n„o encontrado.");
+    printf("\n  paciente n√£o encontrado.");
     printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
     return primeiro;
   }
@@ -1552,28 +1551,28 @@ do {
 
     switch (op) {
 
-    //Desalocando o espaÁo da memÛria (somente ao paciente atual/selecionado).
+    //Desalocando o espa√ßo da mem√≥ria (somente ao paciente atual/selecionado).
     case 'S':
   case 's': free(atual);
                 break;
     case 'N':
-  case 'n': printf("\n\n  Paciente n„o excluÌdo. Pressione qualquer tecla para voltar.");
+  case 'n': printf("\n\n  Paciente n√£o exclu√≠do. Pressione qualquer tecla para voltar.");
                 getch();
                 system("cls");
                 Cadastros();
                 break;
-    default: printf("\n\n  OpÁ„o inv·lida. Tente novamente.\n");
+    default: printf("\n\n  Op√ß√£o inv√°lida. Tente novamente.\n");
                     system("pause");
                     break;
 }
 }while (op != 's' && op != 'S');
-  //Excluindo o primeiro paciente da lista (o anterior estar· apontando ‡ posiÁ„o zero da lista).
+  //Excluindo o primeiro paciente da lista (o anterior estar√° apontando √† posi√ß√£o zero da lista).
   if(anterior == NULL){
-    printf("\n  Paciente excluÌdo com sucesso.");
+    printf("\n  Paciente exclu√≠do com sucesso.");
     primeiro = atual->prox;
     //Excluindo um paciente do meio da lista.
   }else{
-    printf("\n  Paciente excluÌdo com sucesso.");
+    printf("\n  Paciente exclu√≠do com sucesso.");
     anterior->prox = atual->prox;
    }
 
@@ -1582,21 +1581,21 @@ do {
   return primeiro;
 }
 
-//FunÁ„o para excluir algum cadastro especÌfico de funcion·rio.
+//Fun√ß√£o para excluir algum cadastro espec√≠fico de funcion√°rio.
 Lista* excluir_funcionario(Lista *primeiro){
 
   Lista *anterior = NULL;//Ponteiro para saber o elemento anterior ao elemento atual da lista.
   Lista *atual = primeiro;//Ponteiro para percorrer a lista sem perder o primeiro elemento da lista.
 
-  //Vari·vel local codigo para fazer a comparaÁ„o.
+  //Vari√°vel local codigo para fazer a compara√ß√£o.
   unsigned long int f_codigo = 0;
   char op;
         printf(" *---------------------------------------------------------------------------\n");
       printf(" | ");printf("\t\t\t        EXCLUIR CADASTROS");printf("\t\t\t      |\n");
       printf(" *----------------------------------------------------------------------------*\n");
 
-  //Requisitando e lendo o cÛdigo do paciente a ser excluÌdo.
-  printf("  CÛdigo do funcion·rio a ser excluÌdo: ");
+  //Requisitando e lendo o c√≥digo do paciente a ser exclu√≠do.
+  printf("  C√≥digo do funcion√°rio a ser exclu√≠do: ");
   fflush(stdin);
   scanf("%u",&f_codigo);
 do {
@@ -1611,44 +1610,44 @@ do {
     atual = atual->prox;
   }
 
-  //Mensagem caso o paciente n„o seja encontrado.
+  //Mensagem caso o paciente n√£o seja encontrado.
   if(atual == NULL){
-    printf("\n  Funcion·rio n„o encontrado.");
+    printf("\n  Funcion√°rio n√£o encontrado.");
       printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
                 getch();
                 system("cls");
                 menu_Administrador();
   }
 
-    printf("\n  Deseja excluir o funcion·rio? (s/n)");
+    printf("\n  Deseja excluir o funcion√°rio? (s/n)");
     op = getch();
 
     switch (op) {
-    //Desalocando o espaÁo da memÛria (somente ao paciente atual/selecionado).
+    //Desalocando o espa√ßo da mem√≥ria (somente ao paciente atual/selecionado).
 
     case 'S':
   case 's': free(atual);
                 break;
     case 'N':
-  case 'n': printf("\n\n  Funcion·rio n„o excluÌdo. Pressione qualquer tecla para voltar.");
+  case 'n': printf("\n\n  Funcion√°rio n√£o exclu√≠do. Pressione qualquer tecla para voltar.");
                 getch();
                 system("cls");
                 menu_Administrador();
                 break;
-    default: printf("\n\n  OpÁ„o inv·lida. Tente novamente.\n");
+    default: printf("\n\n  Op√ß√£o inv√°lida. Tente novamente.\n");
                     system("pause");
                     break;
     }
 
 }while (op != 's' && op != 'S');
 
-//Excluindo o primeiro funcion·rio da lista.
+//Excluindo o primeiro funcion√°rio da lista.
   if(anterior == NULL){
-    printf("\n  Funcion·rio excluÌdo com sucesso.");
+    printf("\n  Funcion√°rio exclu√≠do com sucesso.");
     primeiro = atual->prox;
-    //Excluindo um funcion·rio do meio da lista.
+    //Excluindo um funcion√°rio do meio da lista.
   }else{
-    printf("\n  Funcion·rio excluÌdo com sucesso.");
+    printf("\n  Funcion√°rio exclu√≠do com sucesso.");
     anterior->prox = atual->prox;
    }
   printf("\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
@@ -1658,18 +1657,18 @@ do {
 }
 
 
-//FunÁ„o para alterar dados de pacientes.
+//Fun√ß√£o para alterar dados de pacientes.
 void alterar_paciente(Lista* primeiro){
 
-  //Vari·veis para fazer a alteraÁ„o
+  //Vari√°veis para fazer a altera√ß√£o
   char nome_substituto[100], endereco_substituto[100], sexo_substituto[20], documento_substituto[20];
   int dia_substituto, mes_substituto, ano_substituto;
   unsigned long int codigo;
   char digitos[4];
   Lista* atual = primeiro;
 
-  //Requisitando e lendo o cÛdigo do paciente a ser alterado.
-  printf("  CÛdigo do paciente a ser alterado: ");
+  //Requisitando e lendo o c√≥digo do paciente a ser alterado.
+  printf("  C√≥digo do paciente a ser alterado: ");
   fflush(stdin);
   scanf("%u",&codigo);
 
@@ -1683,7 +1682,7 @@ void alterar_paciente(Lista* primeiro){
     printf("\n  Novo nome: ");
     fflush (stdin); gets(nome_substituto);
     strcpy(atual->nome,nome_substituto);
-    printf("\n  Novo endereÁo: ");
+    printf("\n  Novo endere√ßo: ");
     fflush (stdin); gets(endereco_substituto);
     strcpy(atual->endereco,endereco_substituto);
     printf("\n Novo sexo: ");
@@ -1693,7 +1692,7 @@ void alterar_paciente(Lista* primeiro){
    fflush(stdin);
    printf("\n  Dia: "); scanf("%d", &dia_substituto);
    fflush(stdin);
-   printf("\n  MÍs: "); scanf("%d", &mes_substituto);
+   printf("\n  M√™s: "); scanf("%d", &mes_substituto);
    fflush(stdin);
     printf("\n  Ano: "); scanf("%d", &ano_substituto);
 
@@ -1705,7 +1704,7 @@ void alterar_paciente(Lista* primeiro){
     fflush(stdin); gets(documento_substituto);
     strcpy(atual->CPF, documento_substituto);
 
-    /*Pegar somente os 6 primeiros digitos do CPF e coloc·-los no cÛdigo do funcion·rio*/
+    /*Pegar somente os 6 primeiros digitos do CPF e coloc√°-los no c√≥digo do funcion√°rio*/
     memcpy(digitos, &documento_substituto[0], 4);
     digitos[4] = '\0'; // adiciona o terminador de linha
     codigo = atol(digitos);
@@ -1713,7 +1712,7 @@ void alterar_paciente(Lista* primeiro){
     atual->codigo = codigo;
 
     printf("  Dados alterados com sucesso.\n");
-  }else printf("\n  paciente n„o encontrado.");
+  }else printf("\n  paciente n√£o encontrado.");
 
   printf("\n\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
   getche();
@@ -1721,10 +1720,10 @@ void alterar_paciente(Lista* primeiro){
   Cadastros();
 }
 
-//FunÁ„o para alterar dados de funcion·rios.
+//Fun√ß√£o para alterar dados de funcion√°rios.
 void alterar_funcionario(Lista* primeiro){
 
-  //Vari·veis para fazer a alteraÁ„o
+  //Vari√°veis para fazer a altera√ß√£o
   char nome_substituto[100], endereco_substituto[100], sexo_substituto[20], documento_substituto[20];
   int cargo_substituto;
   unsigned long int f_codigo;
@@ -1732,8 +1731,8 @@ void alterar_funcionario(Lista* primeiro){
   char op, digitos[6];
   Lista* atual = primeiro;
 
-  //Requisitando e lendo o cÛdigo do funcion·rio a ser alterado.
-  printf("  CÛdigo do funcion·rio a ser alterado: ");
+  //Requisitando e lendo o c√≥digo do funcion√°rio a ser alterado.
+  printf("  C√≥digo do funcion√°rio a ser alterado: ");
   fflush(stdin);
   scanf("%u",&f_codigo);
 
@@ -1745,9 +1744,9 @@ void alterar_funcionario(Lista* primeiro){
   //Alterando os dados do paciente.
   if(atual != NULL){
 
-printf("\n\n  <1> Para alterar o nome;\n  <2> Para alterar o endereÁo;\n  <3> Para alterar o sexo;\n  <4> Para alterar o documento;\n  <5> Para alterar o cargo;\n  <6> Para alterar a senha.\n  <V> Para voltar.\n\n");
+printf("\n\n  <1> Para alterar o nome;\n  <2> Para alterar o endere√ßo;\n  <3> Para alterar o sexo;\n  <4> Para alterar o documento;\n  <5> Para alterar o cargo;\n  <6> Para alterar a senha.\n  <V> Para voltar.\n\n");
   do {
-    printf("\n  Escolha uma opÁ„o: ");
+    printf("\n  Escolha uma op√ß√£o: ");
     op = getche();
 
     switch (op) {
@@ -1757,7 +1756,7 @@ printf("\n\n  <1> Para alterar o nome;\n  <2> Para alterar o endereÁo;\n  <3> Pa
     strcpy(atual->f_nome, nome_substituto);
     break;
 
-    case '2': printf("\n  Novo endereÁo: ");
+    case '2': printf("\n  Novo endere√ßo: ");
     fflush (stdin); gets(endereco_substituto);
     strcpy(atual->f_endereco, endereco_substituto);
     break;
@@ -1771,7 +1770,7 @@ printf("\n\n  <1> Para alterar o nome;\n  <2> Para alterar o endereÁo;\n  <3> Pa
     fflush(stdin); gets(documento_substituto);
     strcpy(atual->f_CPF, documento_substituto);
 
-    /*Pegar somente os 4 primeiros digitos do CPF e coloc·-los no cÛdigo do funcion·rio*/
+    /*Pegar somente os 4 primeiros digitos do CPF e coloc√°-los no c√≥digo do funcion√°rio*/
     memcpy(digitos, &documento_substituto[0], 6);
     digitos[6] = '\0'; // adiciona o terminador de linha
     f_codigo = atol(digitos);
@@ -1780,11 +1779,11 @@ printf("\n\n  <1> Para alterar o nome;\n  <2> Para alterar o endereÁo;\n  <3> Pa
     break;
 
     case '5':
-    printf("\n  Novo cargo: \n  (1) Secret·rio\n  (2) MÈdico\n  (3) Recepcionista\n  (4) Faxineiro\n");
-  //ArtifÌcio para que somente os seguintes n˙meros sejam utilizados
+    printf("\n  Novo cargo: \n  (1) Secret√°rio\n  (2) M√©dico\n  (3) Recepcionista\n  (4) Faxineiro\n");
+  //Artif√≠cio para que somente os seguintes n√∫meros sejam utilizados
 
   do{
-        printf("  Informe um n˙mero v·lido: ");
+        printf("  Informe um n√∫mero v√°lido: ");
         fflush(stdin); scanf("%d", &cargo_substituto);
   }while(cargo_substituto != 1 && cargo_substituto != 2 && cargo_substituto != 3 && cargo_substituto != 4);
     atual->cargo = cargo_substituto;
@@ -1795,7 +1794,7 @@ printf("\n\n  <1> Para alterar o nome;\n  <2> Para alterar o endereÁo;\n  <3> Pa
             fflush(stdin); scanf("%u", &senha_substituta);
             atual->senha = senha_substituta;
         }
-        else printf("\n  Este cargo n„o possui senha.");
+        else printf("\n  Este cargo n√£o possui senha.");
     break;
 
     case 'V':
@@ -1805,7 +1804,7 @@ printf("\n\n  <1> Para alterar o nome;\n  <2> Para alterar o endereÁo;\n  <3> Pa
     }
     }while(op != '1' && op != '2' && op != '3' && op != '4' && op != '5' && op != 'v');
     printf("  Dados alterados com sucesso.\n");
-  }else printf("\n  Funcion·rio n„o encontrado.");
+  }else printf("\n  Funcion√°rio n√£o encontrado.");
 
   printf("\n\n\n  PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU PRINCIPAL.");
   getche();
@@ -1822,7 +1821,7 @@ void data() {
   temp = *localtime( &now );
   const char *format = "%d/%m/%Y %H:%M:%S";
 
-  //Alocando as informaÁıes do tempo (pela biblioteca time.h) na estrutura data
+  //Alocando as informa√ß√µes do tempo (pela biblioteca time.h) na estrutura data
   d.dia     = temp.tm_mday;
   d.mes     = temp.tm_mon;
   d.ano     = temp.tm_year;
