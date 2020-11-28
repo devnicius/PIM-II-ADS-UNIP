@@ -76,22 +76,22 @@ typedef struct lista{
   Lista *inserir_adm();
   void inicio();
   void valida_Login(Lista *primeiro);
-  void menu_Medico(); //63
+  void menu_Medico();
   void agenda();
-  void menu_Secretario();//111
+  void menu_Secretario();
   void menu_Administrador();
-  void Cadastros();//146
-  void Agendamentos();//232
+  void Cadastros();
+  void Agendamentos();
   Lista* inserir_funcionario(Lista* primeiro);
-  Lista* inserir_paciente(Lista* primeiro);//293
-  void listar_paciente(Lista* primeiro);//358
-  void listar_funcionario(Lista* primeiro);//358
-  Lista* buscar(Lista* primeiro);//387
-  Lista* excluir_paciente(Lista* primeiro);//427
+  Lista* inserir_paciente(Lista* primeiro);
+  void listar_paciente(Lista* primeiro);
+  void listar_funcionario(Lista* primeiro);
+  Lista* buscar(Lista* primeiro);
+  Lista* excluir_paciente(Lista* primeiro);
   Lista* excluir_funcionario(Lista *primeiro);
-  void alterar_paciente(Lista* primeiro);//469
+  void alterar_paciente(Lista* primeiro);
   void alterar_funcionario(Lista* primeiro);
-  void data();//519
+  void data();
 
   void agendar () {
   //ponteiro para apontar o atual ao primeiro elemento da lista (como o i = 0 para vetores, aponta para o primeiro campo para apontar aos próximos, possívelmente).
